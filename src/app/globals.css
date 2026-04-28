@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-outfit);
+}
+
+:root {
+  /* Default light theme */
+  --background: #ffffff;
+  --foreground: #09090b;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Default dark theme */
+  --background: #030712;
+  --foreground: #f9fafb;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Colors Theme - Blue (Default) */
+:root {
+  --primary: #3b82f6;
+  --accent: #8b5cf6;
+}
+[data-color="blue"] {
+  --primary: #3b82f6;
+  --accent: #8b5cf6;
+}
+
+/* Colors Theme - Green */
+[data-color="green"] {
+  --primary: #10b981;
+  --accent: #0ea5e9;
+}
+
+/* Colors Theme - Purple */
+[data-color="purple"] {
+  --primary: #8b5cf6;
+  --accent: #ec4899;
+}
+
+/* Colors Theme - Red */
+[data-color="red"] {
+  --primary: #ef4444;
+  --accent: #f97316;
+}
+
+/* Colors Theme - Orange */
+[data-color="orange"] {
+  --primary: #f97316;
+  --accent: #eab308;
+}
+
+@layer base {
+  * {
+    @apply border-gray-800;
+  }
+  html, body {
+    @apply bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--primary)] selection:text-white transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r;
+  background-image: linear-gradient(to right, var(--primary), var(--accent));
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+.ring-primary {
+  --tw-ring-color: var(--primary);
+}
+
+.shadow-primary {
+  --tw-shadow-color: var(--primary);
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%,-40%) scale(1);
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease .75s 1 forwards;
+}
