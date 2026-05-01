@@ -32,7 +32,7 @@ export default function Navbar() {
         scrolled ? "glass py-4 shadow-lg" : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
         <motion.a
           href="#home"
           initial={{ opacity: 0, x: -20 }}

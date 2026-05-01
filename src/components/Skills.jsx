@@ -8,24 +8,24 @@ import {
 
 const skillCategories = [
   {
-    title: "Frontend",
+    title: "Frontend & Core",
     icon: <Layout className="text-blue-400" />,
-    skills: ["React.js", "Next.js", "Tailwind CSS", "JavaScript (ES6+)", "HTML5/CSS3"],
+    skills: ["TypeScript / JavaScript", "React.js", "Next.js", "Tailwind CSS"],
   },
   {
     title: "Backend",
     icon: <Server className="text-green-400" />,
-    skills: ["Node.js", "Express.js", "RESTful APIs", "Java", "Python"],
+    skills: ["Node.js & Express", "Java & Spring Boot", "Python", "WebSockets & REST"],
   },
   {
-    title: "Database",
+    title: "Databases & Brokers",
     icon: <Database className="text-yellow-400" />,
-    skills: ["MongoDB", "MySQL", "PostgreSQL", "Firebase"],
+    skills: ["PostgreSQL", "MongoDB", "Redis", "RabbitMQ & Apache Kafka"],
   },
   {
-    title: "Other",
+    title: "Architecture & DevOps",
     icon: <Cloud className="text-purple-400" />,
-    skills: ["Git/GitHub", "Docker", "C/C++", "Problem Solving"],
+    skills: ["Event Sourcing & CQRS", "Microservices", "Docker", "Machine Learning (NLP)"],
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Skills() {
               <h4 className="text-xl font-bold mb-4">{category.title}</h4>
               <ul className="space-y-3">
                 {category.skills.map((skill) => (
-                  <li key={skill} className="flex items-center text-gray-400 text-sm">
+                  <li key={skill} className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mr-3" />
                     {skill}
                   </li>

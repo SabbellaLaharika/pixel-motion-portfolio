@@ -28,7 +28,7 @@ export function MagneticButton({ children, className = "", onClick, href }) {
       onMouseLeave={reset}
       animate={{ x, y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={`inline-block ${className}`}
+      className={className}
       onClick={onClick}
     >
       {children}
@@ -36,7 +36,7 @@ export function MagneticButton({ children, className = "", onClick, href }) {
   );
 
   if (href) {
-    return <a href={href} className="inline-block">{content}</a>;
+    return <a href={href} className="inline-block w-full sm:w-auto">{content}</a>;
   }
 
   return content;

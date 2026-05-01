@@ -1,10 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Send } from "lucide-react";
+import { Mail, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+  const form = useRef();
+  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    // Replace these with your actual IDs from EmailJS dashboard
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey || serviceId === "your_service_id") {
+      console.error("EmailJS credentials are not set in .env.local");
+      setStatus("error");
+      return;
+    }
+
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+      .then((result) => {
+        setStatus("success");
+        form.current.reset();
+        setTimeout(() => setStatus("idle"), 5000);
+      }, (error) => {
+        console.error("EmailJS Error:", error);
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
+      });
+  };
+
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-6">
@@ -17,41 +49,41 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
-              <p className="text-gray-400 mb-8 text-lg">
+              <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
                 I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
               </p>
 
               <div className="space-y-6">
                 <a
-                  href="mailto:lharika.sabbella@gmail.com"
-                  className="flex items-center group p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition-all"
+                  href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 group-hover:bg-primary transition-colors">
                     <Mail size={20} className="text-primary group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Email Me</p>
-                    <p className="text-white font-medium">lharika.sabbella@gmail.com</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Email Me</p>
+                    <p className="text-gray-900 dark:text-white font-medium">{process.env.NEXT_PUBLIC_PERSONAL_EMAIL}</p>
                   </div>
                 </a>
 
                 <div className="flex gap-4">
                   <a
-                    href="https://github.com/SabbellaLaharika"
+                    href={process.env.NEXT_PUBLIC_PERSONAL_GITHUB}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center group p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition-all"
+                    className="flex-1 flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
                   >
                     <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mr-4 group-hover:bg-gray-700 transition-colors">
-                      <FaGithub size={18} />
+                      <FaGithub size={18} className="text-gray-300 group-hover:text-white transition-colors" />
                     </div>
                     <span className="text-sm font-medium">GitHub</span>
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/sabbella-laharika/"
+                    href={process.env.NEXT_PUBLIC_PERSONAL_LINKEDIN}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center group p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition-all"
+                    className="flex-1 flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
                   >
                     <div className="w-10 h-10 rounded-xl bg-blue-900/30 flex items-center justify-center mr-4 group-hover:bg-blue-600 transition-colors">
                       <FaLinkedin size={18} className="text-blue-400 group-hover:text-white" />
@@ -63,41 +95,67 @@ export default function Contact() {
             </motion.div>
 
             <motion.form
+              ref={form}
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="space-y-6"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={sendEmail}
             >
+              {/* Hidden fields for EmailJS template variables */}
+              <input type="hidden" name="to_name" value="Laharika" />
+              <input type="hidden" name="subject" value="New Message from Pixel-Motion Portfolio" />
+              
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-400">Full Name</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-400">Full Name</label>
                 <input
                   type="text"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  name="from_name"
+                  required
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                   placeholder="John Doe"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-400">Email Address</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-400">Email Address</label>
                 <input
                   type="email"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  name="email"
+                  required
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                   placeholder="john@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-400">Message</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-400">Message</label>
                 <textarea
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 h-32 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
+                  name="message"
+                  required
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 h-32 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
                   placeholder="Your message here..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center shadow-lg shadow-primary/20"
+                disabled={status === "loading"}
+                className={`w-full font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center shadow-lg transition-all ${
+                  status === "success" 
+                    ? "bg-green-500 text-white" 
+                    : status === "error"
+                    ? "bg-red-500 text-white"
+                    : "bg-primary text-white hover:opacity-90 shadow-primary/20"
+                }`}
               >
-                Send Message <Send size={18} className="ml-2" />
+                {status === "loading" ? (
+                  "Sending..."
+                ) : status === "success" ? (
+                  <>Sent Successfully <CheckCircle size={18} className="ml-2" /></>
+                ) : status === "error" ? (
+                  <>Failed to Send <AlertCircle size={18} className="ml-2" /></>
+                ) : (
+                  <>Send Message <Send size={18} className="ml-2" /></>
+                )}
               </button>
             </motion.form>
           </div>

@@ -15,9 +15,9 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "Sabbella Laharika | Software Developer",
-  description: "Personal portfolio of Sabbella Laharika, a passionate Software Developer specializing in React, Next.js, and modern web technologies.",
-  keywords: ["Sabbella Laharika", "Software Developer", "Portfolio", "React Developer", "Next.js", "Web Development"],
+  title: "Sabbella Laharika | Software Engineer",
+  description: "Personal portfolio of Sabbella Laharika, a Software Developer specializing in Distributed Systems, Event-Driven Architecture, and Scalable Backend Solutions.",
+  keywords: ["Sabbella Laharika", "Software Developer", "Backend Engineer", "Distributed Systems", "Event Sourcing", "CQRS", "Node.js", "Java", "Next.js"],
   authors: [{ name: "Sabbella Laharika" }],
 };
 
