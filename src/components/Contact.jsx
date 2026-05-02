@@ -14,7 +14,6 @@ export default function Contact() {
     e.preventDefault();
     setStatus("loading");
 
-    // Replace these with your actual IDs from EmailJS dashboard
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -49,26 +48,30 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
                 I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
+                {/* Email Card */}
                 <a
                   href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}
-                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all overflow-hidden"
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/10"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors">
                     <Mail size={20} className="text-primary group-hover:text-white" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Email Me</p>
-                    <p className="text-gray-900 dark:text-white font-medium text-sm break-all">{process.env.NEXT_PUBLIC_PERSONAL_EMAIL}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider mb-0.5">Email Me</p>
+                    <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.85rem,2.5vw,1rem)] break-all leading-tight">
+                      {process.env.NEXT_PUBLIC_PERSONAL_EMAIL}
+                    </p>
                   </div>
                 </a>
 
+                {/* Call / WhatsApp Card */}
                 <div
-                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/5"
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/10"
                 >
                   <a 
                     href="tel:+919866984678"
@@ -78,42 +81,45 @@ export default function Contact() {
                       <Phone size={20} className="text-green-500 group-hover:text-white" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Call / WhatsApp</p>
-                      <p className="text-gray-900 dark:text-white font-medium text-sm">+91 9866984678</p>
+                      <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider mb-0.5">Call / WhatsApp</p>
+                      <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.9rem,2.5vw,1.1rem)] leading-tight tracking-tight">
+                        +91 9866984678
+                      </p>
                     </div>
                   </a>
                   <a 
                     href="https://wa.me/919866984678" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-green-600/20 flex items-center justify-center hover:bg-green-600 transition-colors group/wa shrink-0 ml-2"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-600/20 flex items-center justify-center hover:bg-green-600 transition-colors group/wa shrink-0 ml-3"
                   >
-                    <FaWhatsapp size={20} className="text-green-600 group-hover/wa:text-white" />
+                    <FaWhatsapp size={22} className="text-green-600 group-hover/wa:text-white transition-all transform group-hover/wa:scale-110" />
                   </a>
                 </div>
 
-                <div className="flex gap-4">
+                {/* GitHub & LinkedIn Row */}
+                <div className="flex flex-row gap-3 md:gap-4">
                   <a
                     href={process.env.NEXT_PUBLIC_PERSONAL_GITHUB}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
+                    className="flex-1 flex items-center group p-3 md:p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all border border-transparent hover:border-black/5 dark:hover:border-white/10"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mr-4 group-hover:bg-gray-700 transition-colors">
+                    <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-gray-800 flex items-center justify-center mr-3 md:mr-4 group-hover:bg-gray-700 transition-colors shrink-0">
                       <FaGithub size={18} className="text-gray-300 group-hover:text-white transition-colors" />
                     </div>
-                    <span className="text-sm font-medium">GitHub</span>
+                    <span className="text-[clamp(0.8rem,2vw,0.95rem)] font-bold text-gray-700 dark:text-gray-200">GitHub</span>
                   </a>
                   <a
                     href={process.env.NEXT_PUBLIC_PERSONAL_LINKEDIN}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
+                    className="flex-1 flex items-center group p-3 md:p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all border border-transparent hover:border-black/5 dark:hover:border-white/10"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-blue-900/30 flex items-center justify-center mr-4 group-hover:bg-blue-600 transition-colors">
-                      <FaLinkedin size={18} className="text-blue-400 group-hover:text-white" />
+                    <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-blue-900/30 flex items-center justify-center mr-3 md:mr-4 group-hover:bg-blue-600 transition-colors shrink-0">
+                      <FaLinkedin size={18} className="text-blue-400 group-hover:text-white transition-colors" />
                     </div>
-                    <span className="text-sm font-medium">LinkedIn</span>
+                    <span className="text-[clamp(0.8rem,2vw,0.95rem)] font-bold text-gray-700 dark:text-gray-200">LinkedIn</span>
                   </a>
                 </div>
               </div>
@@ -128,7 +134,6 @@ export default function Contact() {
               className="space-y-6"
               onSubmit={sendEmail}
             >
-              {/* Hidden fields for EmailJS template variables */}
               <input type="hidden" name="to_name" value="Laharika" />
               <input type="hidden" name="subject" value="New Message from Pixel-Motion Portfolio" />
               
