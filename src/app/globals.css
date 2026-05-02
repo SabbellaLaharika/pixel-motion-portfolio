@@ -28,6 +28,7 @@
   --primary: #3b82f6;
   --accent: #8b5cf6;
 }
+
 [data-color="blue"] {
   --primary: #3b82f6;
   --accent: #8b5cf6;
@@ -61,7 +62,9 @@
   * {
     @apply border-gray-800;
   }
-  html, body {
+
+  html,
+  body {
     @apply bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--primary)] selection:text-white transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
@@ -70,6 +73,7 @@
 
 /* Accessibility: Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   ::before,
   ::after {
@@ -116,12 +120,23 @@
     opacity: 0;
     transform: translate(-72%, -62%) scale(0.5);
   }
+
   100% {
     opacity: 1;
-    transform: translate(-50%,-40%) scale(1);
+    transform: translate(-50%, -40%) scale(1);
   }
 }
 
 .animate-spotlight {
   animation: spotlight 2s ease .75s 1 forwards;
+}
+
+/* Hide scrollbar for horizontal carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

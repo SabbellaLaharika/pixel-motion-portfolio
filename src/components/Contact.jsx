@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle, AlertCircle } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Mail, Send, CheckCircle, AlertCircle, Phone } from "lucide-react";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -66,6 +66,31 @@ export default function Contact() {
                     <p className="text-gray-900 dark:text-white font-medium text-sm break-all">{process.env.NEXT_PUBLIC_PERSONAL_EMAIL}</p>
                   </div>
                 </a>
+
+                <div
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/5"
+                >
+                  <a 
+                    href="tel:+919866984678"
+                    className="flex items-center flex-1 min-w-0"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-green-500 transition-colors">
+                      <Phone size={20} className="text-green-500 group-hover:text-white" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Call / WhatsApp</p>
+                      <p className="text-gray-900 dark:text-white font-medium text-sm">+91 9866984678</p>
+                    </div>
+                  </a>
+                  <a 
+                    href="https://wa.me/919866984678" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl bg-green-600/20 flex items-center justify-center hover:bg-green-600 transition-colors group/wa shrink-0 ml-2"
+                  >
+                    <FaWhatsapp size={20} className="text-green-600 group-hover/wa:text-white" />
+                  </a>
+                </div>
 
                 <div className="flex gap-4">
                   <a
@@ -139,7 +164,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className={`w-full font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center shadow-lg transition-all ${
+                className={`w-full font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center shadow-lg ${
                   status === "success" 
                     ? "bg-green-500 text-white" 
                     : status === "error"

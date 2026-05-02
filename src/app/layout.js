@@ -20,8 +20,8 @@ export const metadata = {
   keywords: ["Sabbella Laharika", "Software Developer", "Backend Engineer", "Distributed Systems", "Event Sourcing", "CQRS", "Node.js", "Java", "Next.js"],
   authors: [{ name: "Sabbella Laharika" }],
   icons: {
-    icon: "/Photo2.jpg",
-    apple: "/Photo2.jpg",
+    icon: "/favicon-circle.png",
+    apple: "/favicon-circle.png",
   },
 };
 

@@ -45,7 +45,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5"
+              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
             >
               <h4 className="text-4xl font-bold text-primary mb-2">2+</h4>
               <p className="text-gray-600 dark:text-gray-400 font-medium">Years Experience</p>
@@ -56,7 +56,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5"
+              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
             >
               <h4 className="text-4xl font-bold text-primary mb-2">18+</h4>
               <p className="text-gray-600 dark:text-gray-400 font-medium">Projects Built</p>
@@ -67,7 +67,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5"
+              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
             >
               <h4 className="text-4xl font-bold text-primary mb-2">CSE</h4>
               <p className="text-gray-600 dark:text-gray-400 font-medium">B.Tech Degree</p>

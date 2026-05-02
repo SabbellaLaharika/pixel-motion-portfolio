@@ -66,7 +66,7 @@ export default function Skills() {
               variants={itemVariants}
               className="glass p-8 rounded-3xl hover:border-primary/30 transition-colors group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gray-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-gray-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
                 {category.icon}
               </div>
               <h4 className="text-xl font-bold mb-4">{category.title}</h4>
