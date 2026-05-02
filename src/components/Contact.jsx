@@ -56,14 +56,14 @@ export default function Contact() {
               <div className="space-y-6">
                 <a
                   href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}
-                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all"
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all overflow-hidden"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 group-hover:bg-primary transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors">
                     <Mail size={20} className="text-primary group-hover:text-white" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Email Me</p>
-                    <p className="text-gray-900 dark:text-white font-medium">{process.env.NEXT_PUBLIC_PERSONAL_EMAIL}</p>
+                    <p className="text-gray-900 dark:text-white font-medium text-sm break-all">{process.env.NEXT_PUBLIC_PERSONAL_EMAIL}</p>
                   </div>
                 </a>
 

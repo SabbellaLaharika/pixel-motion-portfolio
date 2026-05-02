@@ -74,6 +74,7 @@ export default function Hero() {
               src="/Photo1.jpg"
               alt="Sabbella Laharika"
               fill
+              sizes="(max-width: 768px) 0vw, 25vw"
               priority
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />

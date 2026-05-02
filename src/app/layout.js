@@ -19,6 +19,10 @@ export const metadata = {
   description: "Personal portfolio of Sabbella Laharika, a Software Developer specializing in Distributed Systems, Event-Driven Architecture, and Scalable Backend Solutions.",
   keywords: ["Sabbella Laharika", "Software Developer", "Backend Engineer", "Distributed Systems", "Event Sourcing", "CQRS", "Node.js", "Java", "Next.js"],
   authors: [{ name: "Sabbella Laharika" }],
+  icons: {
+    icon: "/Photo2.jpg",
+    apple: "/Photo2.jpg",
+  },
 };
 
 export const viewport = {
@@ -28,7 +32,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased`}
       >

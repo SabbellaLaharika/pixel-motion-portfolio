@@ -145,7 +145,7 @@ export default function Projects() {
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug">{project.challenge}</p>
                     </div>
                     <div>
-                      <span className="text-xs font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider block mb-1">OUTCOME / METRIC</span>
+                      <span className="text-xs font-bold text-primary uppercase tracking-wider block mb-1">OUTCOME / METRIC</span>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug">{project.highlight}</p>
                     </div>
                   </div>
@@ -173,7 +173,7 @@ export default function Projects() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-orange-500 dark:text-orange-400 hover:opacity-80 transition-opacity flex items-center"
+                        className="text-sm font-semibold text-primary hover:opacity-80 transition-opacity flex items-center"
                       >
                         Live Demo <ExternalLink size={14} className="ml-1" />
                       </a>
