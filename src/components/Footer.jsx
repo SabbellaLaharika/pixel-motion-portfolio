@@ -65,7 +65,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`text-gray-500 dark:text-gray-400 transition-all duration-300 transform hover:-translate-y-1 ${link.color}`}
-                aria-label={link.name}
+                aria-label={`Visit my ${link.name} profile`}
               >
                 {link.icon}
               </a>

@@ -56,6 +56,7 @@ export default function Contact() {
                 {/* Email Card */}
                 <a
                   href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}
+                  aria-label="Send me an email"
                   className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/10"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors">
@@ -75,6 +76,7 @@ export default function Contact() {
                 >
                   <a 
                     href="tel:+919866984678"
+                    aria-label="Call me"
                     className="flex items-center flex-1 min-w-0"
                   >
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-green-500 transition-colors">
@@ -91,6 +93,7 @@ export default function Contact() {
                     href="https://wa.me/919866984678" 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label="Message me on WhatsApp"
                     className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-600/20 flex items-center justify-center hover:bg-green-600 transition-colors group/wa shrink-0 ml-3"
                   >
                     <FaWhatsapp size={22} className="text-green-600 group-hover/wa:text-white transition-all transform group-hover/wa:scale-110" />
@@ -103,6 +106,7 @@ export default function Contact() {
                     href={process.env.NEXT_PUBLIC_PERSONAL_GITHUB}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Visit my GitHub profile"
                     className="flex-1 flex items-center group p-3 md:p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all border border-transparent hover:border-black/5 dark:hover:border-white/10"
                   >
                     <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-gray-800 flex items-center justify-center mr-3 md:mr-4 group-hover:bg-gray-700 transition-colors shrink-0">
@@ -114,6 +118,7 @@ export default function Contact() {
                     href={process.env.NEXT_PUBLIC_PERSONAL_LINKEDIN}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Visit my LinkedIn profile"
                     className="flex-1 flex items-center group p-3 md:p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all border border-transparent hover:border-black/5 dark:hover:border-white/10"
                   >
                     <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-blue-900/30 flex items-center justify-center mr-3 md:mr-4 group-hover:bg-blue-600 transition-colors shrink-0">

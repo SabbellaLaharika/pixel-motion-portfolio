@@ -17,6 +17,18 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -26,72 +38,96 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled ? "glass py-4 shadow-lg" : "bg-transparent py-6"
-      )}
-    >
-      <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
-        <motion.a
-          href="#home"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold tracking-tighter"
-        >
-          SL<span className="text-primary">.</span>
-        </motion.a>
+    <>
+      <nav
+        className={cn(
+          "fixed top-0 left-0 w-full z-[100] transition-all duration-300",
+          scrolled ? "glass py-4 shadow-lg" : "bg-transparent py-6",
+          isOpen && "bg-transparent shadow-none" // Clear background when menu is open
+        )}
+      >
+        <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-[110]">
+          <motion.a
+            href="#home"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-2xl font-bold tracking-tighter"
+            onClick={() => setIsOpen(false)}
+          >
+            SL<span className="text-primary">.</span>
+          </motion.a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-8">
-          {navLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {link.name}
-            </motion.a>
-          ))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex space-x-8">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                {link.name}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle mobile menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
+      {/* Mobile Nav Overlay - Moved outside <nav> for cleaner z-indexing */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[90] md:hidden bg-white dark:bg-black flex flex-col items-center justify-center pt-20"
           >
-            <div className="flex flex-col space-y-4 px-6 py-8">
-              {navLinks.map((link) => (
-                <a
+            {/* Background pattern for premium feel (Requirements #1 & #4) */}
+            <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,#000_1.5px,transparent_0)] dark:bg-[radial-gradient(circle_at_center,#fff_1.5px,transparent_0)] [background-size:24px_24px]" />
+            
+            <div className="flex flex-col items-center space-y-10 relative z-10">
+              {navLinks.map((link, index) => (
+                <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-medium"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                  aria-label={`Navigate to ${link.name}`}
+                  className="text-4xl font-bold hover:text-primary transition-colors active:scale-95"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
-                </a>
+                </motion.a>
               ))}
             </div>
+            
+            {/* Social icons in menu for better accessibility */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="absolute bottom-16 flex space-x-8 text-gray-400 dark:text-gray-600"
+            >
+              <div className="text-[10px] uppercase tracking-[0.3em] font-bold">
+                Sabbella Laharika &copy; 2024
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
