@@ -57,14 +57,14 @@ export default function Contact() {
                 <a
                   href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}
                   aria-label="Send me an email"
-                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/10"
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-primary/10 dark:hover:bg-primary/10 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-primary/20"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors">
-                    <Mail size={20} className="text-primary group-hover:text-white" />
+                    <Mail size={20} className="text-primary group-hover:text-white transition-colors" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider mb-0.5">Email Me</p>
-                    <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.85rem,2.5vw,1rem)] break-all leading-tight">
+                    <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.85rem,2.5vw,1rem)] break-all leading-tight group-hover:text-primary transition-colors">
                       {process.env.NEXT_PUBLIC_PERSONAL_EMAIL}
                     </p>
                   </div>
@@ -72,7 +72,7 @@ export default function Contact() {
 
                 {/* Call / WhatsApp Card */}
                 <div
-                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-black/5 dark:hover:border-white/10"
+                  className="flex items-center group p-4 bg-black/5 dark:bg-white/5 hover:bg-green-500/10 dark:hover:bg-green-500/10 rounded-2xl transition-all overflow-hidden border border-transparent hover:border-green-500/20"
                 >
                   <a 
                     href="tel:+919866984678"
@@ -80,11 +80,11 @@ export default function Contact() {
                     className="flex items-center flex-1 min-w-0"
                   >
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mr-4 shrink-0 group-hover:bg-green-500 transition-colors">
-                      <Phone size={20} className="text-green-500 group-hover:text-white" />
+                      <Phone size={20} className="text-green-500 group-hover:text-white transition-colors" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider mb-0.5">Call / WhatsApp</p>
-                      <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.9rem,2.5vw,1.1rem)] leading-tight tracking-tight">
+                      <p className="text-gray-900 dark:text-white font-semibold text-[clamp(0.9rem,2.5vw,1.1rem)] leading-tight tracking-tight group-hover:text-green-500 transition-colors">
                         +91 9866984678
                       </p>
                     </div>

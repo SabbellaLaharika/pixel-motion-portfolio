@@ -50,13 +50,13 @@ export default function Hero() {
               Backend & Systems Engineer specializing in robust, scalable architectures. 
               Passionate about Distributed Systems, Event-Driven Design, and High-Performance Engineering.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <MagneticButton 
-                href="#projects"
-                className="w-full sm:w-auto px-8 py-4 bg-primary hover:opacity-90 text-white rounded-xl font-semibold flex items-center justify-center gap-2 whitespace-nowrap transition-opacity shadow-lg shadow-primary/25"
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a 
+                href="#projects" 
+                className="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1 transition-all group animate-shimmer"
               >
-                <span>View My Work</span> <ArrowRight size={18} />
-              </MagneticButton>
+                View Architecture Cases <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
               <MagneticButton
                 href="#contact"
                 className="w-full sm:w-auto px-8 py-4 glass border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10 rounded-xl font-semibold flex items-center justify-center whitespace-nowrap transition-colors"

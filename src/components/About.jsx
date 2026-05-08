@@ -45,10 +45,11 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              className="group glass p-8 rounded-3xl text-center border border-black/[0.05] dark:border-white/5 hover:-translate-y-1 hover:border-primary/30 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
             >
-              <h4 className="text-4xl font-bold text-primary mb-2">2+</h4>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Years Experience</p>
+              <h4 className="text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">2+</h4>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-black text-gray-500 dark:text-gray-500 mb-1">Industry Standard</p>
+              <p className="text-gray-900 dark:text-gray-300 font-bold">Years Experience</p>
             </motion.div>
             
             <motion.div 
@@ -56,10 +57,11 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              className="group glass p-8 rounded-3xl text-center border border-black/[0.05] dark:border-white/5 hover:-translate-y-1 hover:border-primary/30 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
             >
-              <h4 className="text-4xl font-bold text-primary mb-2">18+</h4>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Projects Built</p>
+              <h4 className="text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">18+</h4>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-black text-gray-500 dark:text-gray-500 mb-1">Production Level</p>
+              <p className="text-gray-900 dark:text-gray-300 font-bold">Systems Built</p>
             </motion.div>
 
             <motion.div 
@@ -67,10 +69,11 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="glass p-8 rounded-2xl text-center border border-white/5 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              className="group glass p-8 rounded-3xl text-center border border-black/[0.05] dark:border-white/5 hover:-translate-y-1 hover:border-primary/30 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
             >
-              <h4 className="text-4xl font-bold text-primary mb-2">CSE</h4>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">B.Tech Degree</p>
+              <h4 className="text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">CSE</h4>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-black text-gray-500 dark:text-gray-500 mb-1">Academic Foundation</p>
+              <p className="text-gray-900 dark:text-gray-300 font-bold">B.Tech Degree</p>
             </motion.div>
           </div>
         </div>
