@@ -122,7 +122,7 @@ export default function Navbar() {
               className="absolute bottom-16 flex space-x-8 text-gray-400 dark:text-gray-600"
             >
               <div className="text-[10px] uppercase tracking-[0.3em] font-bold">
-                Sabbella Laharika &copy; 2024
+                Sabbella Laharika &copy; {new Date().getFullYear()}
               </div>
             </motion.div>
           </motion.div>
