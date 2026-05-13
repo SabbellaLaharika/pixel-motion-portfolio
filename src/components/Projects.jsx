@@ -177,6 +177,8 @@ const projects = [
 export default function Projects() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [zoomedImage, setZoomedImage] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
   const detailRef = useRef(null);
 
@@ -198,14 +200,54 @@ export default function Projects() {
     }
   }, [selectedIndex]);
 
-  const scroll = (direction) => {
+  // Monitor manual scrolling and touch swipes to update pagination state
+  const handleScroll = () => {
     if (scrollRef.current) {
-      const scrollAmount = 420;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+      const container = scrollRef.current;
+      const child = container.firstElementChild;
+      if (!child) return;
+      const cardWidth = child.offsetWidth + 32; // Card width + GAP
+      const index = Math.round(container.scrollLeft / cardWidth);
+      const safeIndex = Math.max(0, Math.min(index, projects.length - 1));
+      if (safeIndex !== activeIndex) {
+        setActiveIndex(safeIndex);
+      }
+    }
+  };
+
+  // Safe scrolling utility used by navigation arrows, auto-scroll, and pagination dots
+  const scrollToProject = (index) => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const child = container.firstElementChild;
+      if (!child) return;
+      const cardWidth = child.offsetWidth + 32;
+      
+      container.scrollTo({
+        left: index * cardWidth,
         behavior: "smooth",
       });
+      setActiveIndex(index);
     }
+  };
+
+  // Unified Auto-scroll interval based on active index pagination
+  useEffect(() => {
+    if (isHovered || selectedIndex !== null) return;
+
+    const interval = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % projects.length;
+      scrollToProject(nextIndex);
+    }, 3000); // Rotate position every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [isHovered, selectedIndex, activeIndex]);
+
+  const scroll = (direction) => {
+    const nextIndex = direction === "left" 
+      ? Math.max(0, activeIndex - 1) 
+      : Math.min(projects.length - 1, activeIndex + 1);
+    scrollToProject(nextIndex);
   };
 
   return (
@@ -248,6 +290,11 @@ export default function Projects() {
         {/* Horizontal Scrollable Carousel - Improved Snap & Swipe */}
         <div
           ref={scrollRef}
+          onScroll={handleScroll}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
           className="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide px-2 -mx-2 touch-pan-x"
           style={{ scrollPadding: "24px" }}
         >
@@ -377,6 +424,26 @@ export default function Projects() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Interactive Pagination Indicators (Radio-Button Style) */}
+        <div className="flex justify-center items-center gap-3 mt-2 mb-8">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToProject(index)}
+              className={`h-2.5 rounded-full transition-all duration-500 relative overflow-hidden cursor-pointer ${
+                activeIndex === index 
+                  ? "w-8 bg-primary shadow-[0_0_12px_rgba(59,130,246,0.4)]" 
+                  : "w-2.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-500"
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            >
+              <span className={`absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent transition-opacity duration-500 ${
+                activeIndex === index ? "opacity-100" : "opacity-0"
+              }`} />
+            </button>
+          ))}
         </div>
 
         {/* Detail Panel — Final Polish Refinements */}
